@@ -26,9 +26,9 @@ async def loop(db, exchange, symbol, asset_type):
             if USE_PRO:
                 candle = await exchange.watch_ohlcv(symbol)
             else:
-                time.sleep(exchange.rateLimit / 1000) # time.sleep wants seconds
-                since = datetime.datetime.now() - datetime.timedelta(minutes=1)
-                candle = exchange.fetch_ohlcv(symbol, timeframe='1m', since=since.timestamp())
+                time.sleep(1.0)#exchange.rateLimit / 1000) # time.sleep wants seconds
+                #since = datetime.datetime.now() - datetime.timedelta(minutes=1)
+                candle = exchange.fetch_ohlcv(symbol, timeframe='1m')#, since=since.timestamp())
                 candle = [candle[len(candle) - 1]] # Put in array so its backwards compatible with watch_ohlcv
 
             now = exchange.milliseconds()
