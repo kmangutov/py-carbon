@@ -24,8 +24,6 @@ def sample_df():
     rows = c.execute('SELECT * FROM Candles ORDER BY id ASC LIMIT 1000')
     df = pd.DataFrame()
 
-    unix_epoch = datetime.datetime(1970, 1, 1)
-
     for row in rows:
 
         _open = row[6]
@@ -34,6 +32,8 @@ def sample_df():
         _close = row[9]
         _volume = row[10]
         _timestamp = row[1]
+
+        # TODO: Debug this part to use right datetime formats
 
         #print(_timestamp)
         log_dt = datetime.datetime.strptime(_timestamp, "%Y-%m-%d %H:%M:%S")
