@@ -57,6 +57,7 @@ async def main():
     asset_types = ['spot', 'future']
     await asyncio.gather(*[loop(db, exchange, symbol, asset_type) for symbol in symbols for asset_type in asset_types])
     await exchange.close()
+    await db.close()
 
 if __name__ == '__main__':
     asyncio.get_event_loop().run_until_complete(main())

@@ -1,2 +1,4 @@
 aiosqlite==0.16.0
 ccxt==1.40.63
+backtrader==1.9.70.122
+matplotlib==2.2.3
