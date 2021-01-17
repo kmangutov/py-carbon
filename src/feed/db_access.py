@@ -3,7 +3,7 @@ import datetime
 import asyncio
 import os
 
-DB_PATH = '/code/data/db/ts5.db'
+#DB_PATH = '/code/data/db/ts5.db'
 
 # Scale sqlite: https://stackoverflow.com/questions/784173/what-are-the-performance-characteristics-of-sqlite-with-very-large-database-file
 SQL_CREATE_CANDLES = """CREATE TABLE IF NOT EXISTS Candles (
@@ -56,21 +56,21 @@ async def insert_candle(db,
     await cursor.close()
     
 
-async def connect():
+async def connect(dbpath):
 
     print(os.getcwd())
     print(os.listdir())
-    print(os.listdir('/code/data/db'))
+    #print(os.listdir('/code/data/db'))
 
-    #if not os.path.exists(DB_PATH):
-    #    os.makedirs(DB_PATH)
+    #if not os.path.exists(dbpath):
+    #    os.makedirs(dbpath)
     #if os.path.exists(DB_PATH) == False:
     #    os.mkdir(DB_PATH)
 
-    #if not os.path.exists(DB_PATH):
-    #    open(DB_PATH, 'w').close()
+    if not os.path.exists(dbpath):
+        open(dbpath, 'w').close()
 
-    db = await aiosqlite.connect(DB_PATH)
+    db = await aiosqlite.connect(dbpath)
     await build_table_candles(db)
     return db
 

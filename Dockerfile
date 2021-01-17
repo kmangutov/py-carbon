@@ -14,4 +14,4 @@ RUN pip3 install -r requirements.txt
 # copy the content of the local src directory to the working directory
 COPY src/ .
 
-CMD [ "python3", "./feed/spot_future_feed.py" ]
+CMD ["python3", "./feed/spot_future_feed.py", "--dbpath", "/code/data/ts.db"]

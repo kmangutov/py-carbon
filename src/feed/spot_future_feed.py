@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import argparse
 import db_access
 import asyncio
 import time
@@ -43,7 +44,12 @@ async def loop(db, exchange, symbol, asset_type):
 # TODO: USE_PRO=True works but for USE_PRO=False CCXT, need separate spot and future instanes
 # with exchange.options['defaultType'] = asset_type.
 async def main():
-    db = await db_access.connect()
+    parser = argparse.ArgumentParser("spot_future_feed")
+    parser.add_argument("--dbpath", help="Database path.", type=str, default='./data/ts.db')
+    args = parser.parse_args()
+    print(args.dbpath)
+
+    db = await db_access.connect(args.dbpath)
 
     exchange = ccxtpro.binance({'enableRateLimit': True})
 

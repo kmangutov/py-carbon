@@ -1,6 +1,8 @@
 # py-carbon
 
+Run locally:
+python3 ./src/feed/spot_future_feed.py
 
-
-sudo docker build -t spot_future_feed .
-sudo docker run -v /Users/kmangutov/dev/py-carbon/test:/code/data:Z spot_future_feed
+Build and run docker:
+docker build -t spot_future_feed .
+docker run -v ./volume/:/code/data spot_future_feed
