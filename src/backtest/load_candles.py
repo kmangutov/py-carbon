@@ -32,12 +32,14 @@ def sample_df():
         _close = row[9]
         _volume = row[10]
         _timestamp = row[1]
+        _id = row[0]
 
         # TODO: Debug this part to use right datetime formats
 
         #print(_timestamp)
         log_dt = datetime.datetime.strptime(_timestamp, "%Y-%m-%d %H:%M:%S")
         print(log_dt)
+        print(_id)
         #_unix = (log_dt - unix_epoch).total_seconds()
         #_unix = datetime.datetime.utcfromtimestamp(int(_unix)/1000)
 
@@ -48,7 +50,8 @@ def sample_df():
             'high': _high,
             'low': _low,
             'close': _close,
-            'volume': _volume
+            'volume': _volume,
+            'id': _id,
         }
 
         print(d)
