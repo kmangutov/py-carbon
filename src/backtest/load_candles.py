@@ -21,7 +21,7 @@ def sample():
 
 def sample_df():
     c = conn.cursor()
-    rows = c.execute('SELECT * FROM Candles ORDER BY id ASC LIMIT 1000')
+    rows = c.execute('SELECT * FROM Candles ORDER BY id DESC LIMIT 1000')
     df = pd.DataFrame()
 
     for row in rows:
