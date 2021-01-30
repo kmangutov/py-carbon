@@ -8,8 +8,8 @@ import datetime
 
 # Tick data and bid/ask for backtrader: https://www.backtrader.com/blog/posts/2016-03-08-escape-from-ohlc-land/escape-from-ohlc-land/
 
-
-#conn = sqlite3.connect('./data/ts.db')
+# Didn't figure out how to use relative directory, since this code is going to be called from Jupyter
+# conn = sqlite3.connect('./data/ts.db')
 conn = sqlite3.connect('/Users/kmangutov/dev/py-carbon/data/nopro.db')
 
 def sample():
@@ -35,14 +35,7 @@ def sample_df():
         _id = row[0]
 
         # TODO: Debug this part to use right datetime formats
-
-        #print(_timestamp)
         log_dt = datetime.datetime.strptime(_timestamp, "%Y-%m-%d %H:%M:%S")
-        print(log_dt)
-        print(_id)
-        #_unix = (log_dt - unix_epoch).total_seconds()
-        #_unix = datetime.datetime.utcfromtimestamp(int(_unix)/1000)
-
 
         d = {
             'datetime': log_dt,#_unix,
@@ -53,8 +46,6 @@ def sample_df():
             'volume': _volume,
             'id': _id,
         }
-
-        print(d)
         
         frame = pd.DataFrame(data=d, index=[0])
         df = df.append(frame)
@@ -63,5 +54,3 @@ def sample_df():
 
 def sample_cerebro():
     return bt.feeds.PandasData(dataname=sample_df(), timeframe=bt.TimeFrame.Ticks)
-
-print(sample_df())

@@ -56,10 +56,8 @@ async def insert_candle(db,
     
 
 async def connect(dbpath):
-
+    # Logic for creating dirs and files mostly needed for Docker
     print('cwd: ', os.getcwd())
-    #if not os.path.exists(dbpath):
-    #    os.makedirs(dbpath)
 
     if not os.path.exists(dbpath):
         open(dbpath, 'w').close()

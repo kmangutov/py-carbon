@@ -7,7 +7,7 @@ import time
 import datetime
 
 USE_PRO = False
-if USE_PRO:
+if USE_PRO: 
     import ccxtpro
 else:
     import ccxt as ccxtpro
